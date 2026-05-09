@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func getUserInput(prompt string) string {
+func GetUserInput(prompt string) string {
 	fmt.Print(prompt)
 
 	reader := bufio.NewReader(os.Stdin)
@@ -24,8 +24,8 @@ func getUserInput(prompt string) string {
 }
 
 func GetNoteData() (string, string) {
-	title := getUserInput("Enter note title: ")
-	content := getUserInput("Enter note content: ")
+	title := GetUserInput("Enter note title: ")
+	content := GetUserInput("Enter note content: ")
 
 	return title, content
 }
