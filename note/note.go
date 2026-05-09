@@ -3,32 +3,31 @@ package note
 import (
 	"errors"
 	"fmt"
+	"time"
 )
 
-func GetUserInput(prompt string) (string, error) {
-	var input string
-	fmt.Print(prompt)
-	fmt.Scanln(&input)
-
-	if input == "" {
-		return input, errors.New("Invalid input")
-	}
-
-	return input, nil
+type Note struct {
+	title     string
+	note      string
+	createdAt time.Time
 }
 
-func GetNoteData() (string, string, error) {
-	title, err := GetUserInput("Enter note title: ")
-
-	if err != nil {
-		return "", "", err
+func New(title, content string) (Note, error) {
+	if title == "" || content == "" {
+		return Note{}, errors.New("Invalid input")
 	}
 
-	content, err := GetUserInput("Enter note content: ")
+	return Note{
+		title:     title,
+		note:      content,
+		createdAt: time.Now(),
+	}, nil
+}
 
-	if err != nil {
-		return "", "", err
-	}
+func (n Note) Save() {
 
-	return title, content, nil
+}
+
+func (n Note) Display() {
+	fmt.Printf("Title: %s\n\nContent: %s\n\nCreated At: %s\n\n", n.title, n.note, n.createdAt.Format(time.RFC1123))
 }

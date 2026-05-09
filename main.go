@@ -7,12 +7,13 @@ import (
 )
 
 func main() {
-	title, content, err := note.GetNoteData()
+	title, content := note.GetNoteData()
 
+	newNote, err := note.New(title, content)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	fmt.Printf("Note created successfully!\nTitle: %s\nContent: %s\n", title, content)
+	newNote.Display()
 }
